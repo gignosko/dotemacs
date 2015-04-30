@@ -1,16 +1,5 @@
 
 ;;; Package 
-(require 'package)
-(package-initialize)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(require 'evil-leader)
-(global-evil-leader-mode)
-(require 'evil)
-(evil-mode 1)
-(load "~/.emacs.d/vendor/jedi-starter.el")
-
-;;(add-to-list 'load-path "~/.emacs.d") ; to find Emacs 23 package.el
 
 (defvar local-packages '(projectile auto-complete epc jedi))
 

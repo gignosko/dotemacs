@@ -93,6 +93,7 @@
     jedi-core          
     let-alist          
     linum-relative     
+    multi-term
     org                
     pkg-info           
     popup              
@@ -174,8 +175,7 @@
 (global-evil-leader-mode)
 (require 'evil)
 (evil-mode 1)
-(load "~/.emacs.d/vendor/jedi-starter.el")
-(require 'jedi)
+;; (require 'jedi)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (flymake-mode)
@@ -190,7 +190,14 @@
   "oc" 'org-cycle
   ;;projectile
   "pf" 'projectile-find-file
+  
+  ;; flycheck
+  "fn" 'flycheck-next-error
+  "fl" 'flycheck-list-errors
+  
+  "pb" (lambda () (interactive (insert "import pudb; pudb.set_trace()")))
 )
+ 
 
 ;;default theme
 (load-theme 'cyberpunk t)
@@ -202,6 +209,8 @@
           `((".*" ,temporary-file-directory t)))
 
 (require 'linum-relative)
+(line-number-mode)
+(column-number-mode)
 
 (setq-default evil-escape-key-sequence "jk")
 (custom-set-variables
@@ -233,3 +242,5 @@
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
+
+(require 'multi-term)
