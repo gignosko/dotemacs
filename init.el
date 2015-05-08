@@ -64,6 +64,8 @@
 
     ;; git integration
     magit
+    
+    ;; others
     2048-game          
     async              
     auto-complete      
@@ -91,6 +93,7 @@
     ido-completing-read+ 
     jedi               
     jedi-core          
+    key-chord
     let-alist          
     linum-relative     
     multi-term
@@ -183,19 +186,20 @@
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key 
  "b" 'switch-to-buffer
- "pf" 'projectile-find-file
  "ag" 'helm-projectile-ag
  "s" 'save-buffer
  ;;org mode
   "oc" 'org-cycle
   ;;projectile
   "pf" 'projectile-find-file
+  "pf" 'projectile-find-file
   
   ;; flycheck
   "fn" 'flycheck-next-error
   "fl" 'flycheck-list-errors
-  
-  "pb" (lambda () (interactive (insert "import pudb; pudb.set_trace()")))
+ 
+  ;;pudb
+  "pd" (lambda () (interactive (insert "import pudb; pudb.set_trace()")))
 )
  
 
@@ -244,3 +248,23 @@
 (setq interprogram-paste-function 'copy-from-osx)
 
 (require 'multi-term)
+
+;;projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+;;key-chord
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.25)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map  "jk" 'evil-normal-state)
+
+;;set esc to quit these
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
