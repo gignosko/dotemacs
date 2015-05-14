@@ -67,6 +67,7 @@
     
     ;; others
     2048-game          
+    ag
     async              
     auto-complete      
     clojure-mode-extra-font-locking
@@ -174,6 +175,7 @@
 (load "setup-js.el")
 
 ;;my stuff
+(require 'ag)
 (require 'evil-leader)
 (global-evil-leader-mode)
 (require 'evil)
@@ -191,8 +193,7 @@
  ;;org mode
   "oc" 'org-cycle
   ;;projectile
-  "pf" 'projectile-find-file
-  "pf" 'projectile-find-file
+  "pf" 'helm-projectile-find-file
   
   ;; flycheck
   "fn" 'flycheck-next-error
